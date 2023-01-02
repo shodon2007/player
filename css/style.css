@@ -1,4 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 * {
+  font-family: Roboto;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -21,7 +23,7 @@ body {
 
 .player__bottom {
   padding: 15px 0;
-  background-color: black;
+  background-color: #000000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,11 +54,25 @@ body {
   flex-direction: column;
 }
 
+.item__play {
+  transition: all 0.5s ease;
+  fill: white;
+}
+
 .player__item {
+  color: white;
   padding: 10px;
   display: flex;
   justify-content: space-between;
-  background-color: #C0C0C0;
+  transition: all 0.5s ease;
+  background-color: #000000;
+}
+.player__item:hover {
+  color: black;
+  background-color: #ffffff;
+}
+.player__item:hover .item__play {
+  fill: black;
 }
 
 .item__left {
@@ -64,4 +80,14 @@ body {
   justify-content: space-between;
   align-items: center;
   width: 300px;
+}
+
+.item__right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item__play {
+  cursor: pointer;
 }
