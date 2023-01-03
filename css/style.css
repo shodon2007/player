@@ -13,8 +13,43 @@
   display: none;
 }
 
+.player__image img {
+  max-width: 200px;
+}
+
+.player__image img.played {
+  animation-name: animPlay;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
 .player__music {
+  padding: 30px 0;
+  height: 100%;
+  width: 100vw;
+  background-color: rgb(206, 16, 16);
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  z-index: 5;
   display: none;
+  gap: 10px;
+}
+
+.player__image {
+  background-color: gray;
+  padding: 100px;
+  border-radius: 50%;
+}
+
+.player__music.active {
+  display: flex;
+}
+
+.player__name {
+  font-size: 40px;
+  text-align: center;
 }
 
 body {
@@ -28,9 +63,11 @@ body {
 
 .player__body {
   overflow-y: scroll;
+  flex: 1 1 auto;
 }
 
 .player__nav {
+  z-index: 10;
   width: 100vw;
   display: flex;
   justify-content: space-between;
@@ -243,6 +280,14 @@ body {
 @media (max-width: 768px) {
   .player__volume {
     display: none;
+  }
+}
+@media (max-width: 425px) {
+  .player__image {
+    padding: 50px;
+  }
+  .player__image img {
+    max-width: 100px;
   }
 }
 @media (max-width: 320px) {

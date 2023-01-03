@@ -69,6 +69,7 @@ function playSong() {
         `;
     })
     document.querySelector(`.music${thisSong}`).querySelector('.item__plays').innerHTML = '<img class="item__play played" src="img/pause_music.svg">';
+    document.querySelector('.player__image img').classList.add('played');
 
     audio.play();
     play.classList.remove('pause');
@@ -84,17 +85,20 @@ function pauseSong() {
             </svg>
         `;
     })
+
+    document.querySelector('.player__image img').classList.remove('played');
     audio.pause();
     play.classList.add('pause');
 }
 
-
+document.querySelector('.player__name').innerHTML = songList[thisSong];
 
 function showThisSong() {
     document.querySelectorAll('.player__item').forEach((el) => {
         el.classList.remove('played');
     })
     document.querySelector(`.music${thisSong}`).classList.add('played');
+    document.querySelector('.player__name').innerHTML = songList[thisSong];
 }
 
 
@@ -196,5 +200,20 @@ function volumeOff() {
         audio.volume = 0;
         document.querySelector('.volume__img').src = 'img/volume-off.png';
         volume.value = 0;
+    }
+}
+
+function fullClick() {
+    const fullBody = document.querySelector('.player__music');
+    fullBody.classList.contains('active') ? removeFullBody() : showFullBody();
+
+    function removeFullBody() {
+        fullBody.classList.remove('active');
+        document.querySelector('.player__items').style.display = 'flex';
+    }
+
+    function showFullBody() {
+        fullBody.classList.add('active')
+        document.querySelector('.player__items').style.display = 'none';
     }
 }
