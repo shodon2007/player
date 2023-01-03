@@ -91,3 +91,29 @@ body {
 .item__play {
   cursor: pointer;
 }
+
+.player__top {
+  width: 100vw;
+  height: 10px;
+  background-color: black;
+  border-top: 2px solid black;
+}
+
+.player__progress {
+  width: 30%;
+  background-color: white;
+  height: 100%;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+.progress__end {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid gray;
+}

@@ -3,14 +3,39 @@ const prew = document.querySelector('.player__prew');
 const next = document.querySelector('.player__next');
 const audio = document.querySelector('.player__audio');
 const progress = document.querySelector('.player__progress');
+const domSongList = document.querySelector('.player__items')
 
-const songList = ['random test music', 'Free Test File', 'Free Test File'];
+const songList = [
+    { name: 'random test music', executor: 'No name man', },
+    { name: 'Free Test File', executor: 'Mommy Killer' },
+];
+
+songList.forEach((el) => {
+    const testAudio = new Audio();
+    testAudio.src = `audio/ ${el.name}.mp3`;
+    console.log(testAudio)
+    domSongList.innerHTML += `
+    <div class="player__item">
+                <div class="item__left">
+                    <svg class="item__play" width="37" height="37" viewBox="0 0 37 37" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M37 18.5C37 23.4065 35.0509 28.1121 31.5815 31.5815C28.1121 35.0509 23.4065 37 18.5 37C13.5935 37 8.88795 35.0509 5.41852 31.5815C1.9491 28.1121 0 23.4065 0 18.5C0 13.5935 1.9491 8.88795 5.41852 5.41852C8.88795 1.9491 13.5935 0 18.5 0C23.4065 0 28.1121 1.9491 31.5815 5.41852C35.0509 8.88795 37 13.5935 37 18.5ZM15.7019 11.7776C15.529 11.6545 15.3255 11.5813 15.1139 11.5662C14.9022 11.551 14.6904 11.5944 14.5017 11.6916C14.313 11.7888 14.1548 11.9361 14.0442 12.1172C13.9337 12.2984 13.8751 12.5065 13.875 12.7188V24.2812C13.8751 24.4935 13.9337 24.7016 14.0442 24.8828C14.1548 25.0639 14.313 25.2112 14.5017 25.3084C14.6904 25.4056 14.9022 25.449 15.1139 25.4338C15.3255 25.4187 15.529 25.3455 15.7019 25.2224L23.7956 19.4412C23.9455 19.3342 24.0677 19.193 24.152 19.0293C24.2363 18.8656 24.2803 18.6841 24.2803 18.5C24.2803 18.3159 24.2363 18.1344 24.152 17.9707C24.0677 17.807 23.9455 17.6658 23.7956 17.5588L15.7019 11.7776Z" />
+                    </svg>
+                    <div class="item__name">${el.name}</div>
+                    <div class="item__executor">${el.executor}</div>
+                </div>
+                <div class="item__right">
+                    <div class="item__time"></div >
+                </div >
+    </div > `;
+})
 
 let thisSong = 0;
 
 function loadSong(song) {
-    console.log(`audio/${song}.mp3`);
-    audio.src = `audio/${song}.mp3`;
+    console.log(`audio / ${song.name}.mp3`);
+    audio.src = `audio / ${song.name}.mp3`;
 }
 
 loadSong(songList[thisSong]);
@@ -26,19 +51,27 @@ function pauseSong() {
     play.classList.add('pause');
 }
 
-play.addEventListener('click', () => {
-    if (!play.classList.contains('pause')) {
+
+
+
+function nextSong() {
+    if (thisSong < songList.length - 1) {
+        thisSong++;
+    }
+    loadSong(songList[thisSong]);
+    if (play.classList.contains('pause')) {
         pauseSong();
     } else {
         playSong();
     }
-})
+}
 
-
-function nextSong() {
-    thisSong++;
+function prevSong() {
+    if (thisSong != 0) {
+        thisSong--;
+    }
     loadSong(songList[thisSong]);
-    if (!play.classList.contains('pause')) {
+    if (play.classList.contains('pause')) {
         pauseSong();
     } else {
         playSong();
@@ -47,4 +80,16 @@ function nextSong() {
 
 next.addEventListener('click', () => {
     nextSong();
+})
+
+prew.addEventListener('click', () => {
+    prevSong();
+})
+
+play.addEventListener('click', () => {
+    if (!play.classList.contains('pause')) {
+        pauseSong();
+    } else {
+        playSong();
+    }
 })
