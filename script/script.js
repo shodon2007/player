@@ -4,19 +4,50 @@ const next = document.querySelector('.player__next');
 const audio = document.querySelector('.player__audio');
 const progress = document.querySelector('.player__progress');
 const domSongList = document.querySelector('.player__items')
+const volume = document.querySelector('.volume__input');
 
 const songList = [
-    { name: 'random test music', executor: 'No name man', },
-    { name: 'Free Test File', executor: 'Mommy Killer' },
-    { name: 'Sample', executor: 'Mommy Killer' },
-    { name: 'sample4', executor: 'No name' },
+    'random test music',
+    'Free Test File',
+    'Sample',
+    'random test music',
+    'Free Test File',
+    'Sample',
+    'random test music',
+    'Free Test File',
+    'Sample',
+    'random test music',
+    'Free Test File',
+    'Sample',
+    'random test music',
+    'Free Test File',
+    'Sample',
+    'random test music',
+    'Free Test File',
+    'Sample',
+    'random test music',
+    'Free Test File',
+    'Sample',
+    'random test music',
+    'Free Test File',
+    'Sample',
+    'random test music',
+    'Free Test File',
+    'Sample',
+    'random test music',
+    'Free Test File',
+    'Sample',
+    'random test music',
+    'Free Test File',
+    'Sample',
+    'sample4',
 ];
 
 let thisSong = 0;
 
 songList.forEach((el, index) => {
     const testAudio = new Audio();
-    testAudio.src = `audio/${el.name}.mp3`;
+    testAudio.src = `audio/${el}.mp3`;
     testAudio.onloadeddata = () => {
         let min = Math.floor(testAudio.duration / 60);
         let sec = Math.floor(testAudio.duration % 60);
@@ -39,9 +70,8 @@ songList.forEach((el, index) => {
                         />
                     </svg>
                 </div>
-                <div class="item__name">${el.name}</div>
+                <div class="item__name">${el}</div>
             </div>
-            <div class="item__executor">${el.executor}</div>
         </div>
 
         <div class="item__right">
@@ -51,8 +81,8 @@ songList.forEach((el, index) => {
 });
 
 function loadSong(song) {
-    console.log(`audio/${song.name}.mp3`);
-    audio.src = `audio/${song.name}.mp3`;
+    console.log(`audio/${song}.mp3`);
+    audio.src = `audio/${song}.mp3`;
 }
 
 loadSong(songList[thisSong]);
@@ -173,8 +203,16 @@ audio.addEventListener('ended', nextSong)
 
 function itemClick(index) {
     thisSong = index;
-
     loadSong(songList[thisSong]);
     playSong();
     showThisSong();
 }
+
+volume.addEventListener('input', (e) => {
+    audio.volume = e.target.value;
+    if (e.target.value == 0) {
+        document.querySelector('.volume__img').src = 'img/volume-off.png';
+    } else {
+        document.querySelector('.volume__img').src = 'img/volume-on.png';
+    }
+})
