@@ -75,11 +75,32 @@ body {
   fill: black;
 }
 
+.player__item.played {
+  color: black;
+  background-color: white;
+}
+.player__item.played .item__play {
+  fill: black;
+}
+.player__item.played .item__play.played {
+  animation-name: animPlay;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
 .item__left {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 300px;
+}
+
+.play__name {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 10px;
 }
 
 .item__right {
@@ -100,7 +121,6 @@ body {
 }
 
 .player__progress {
-  width: 30%;
   background-color: white;
   height: 100%;
   border-radius: 10px;
@@ -116,4 +136,13 @@ body {
   border-radius: 50%;
   background-color: white;
   border: 1px solid gray;
+}
+
+@keyframes animPlay {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
