@@ -186,3 +186,15 @@ volume.addEventListener('input', (e) => {
         document.querySelector('.volume__img').src = 'img/volume-on.png';
     }
 })
+
+function volumeOff() {
+    if (audio.volume == 0) {
+        audio.volume = 1;
+        document.querySelector('.volume__img').src = 'img/volume-on.png';
+        volume.value = 1;
+    } else {
+        audio.volume = 0;
+        document.querySelector('.volume__img').src = 'img/volume-off.png';
+        volume.value = 0;
+    }
+}
