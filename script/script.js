@@ -29,7 +29,7 @@ songList.forEach((el, index) => {
         document.querySelector(`.music${index}`).querySelector('.item__time').innerHTML = min + ":" + sec;
     }
     domSongList.innerHTML += ` 
-    <div class="player__item music${index} ${index == thisSong ? 'played' : false}">
+    <div onclick="itemClick(${index})" class="player__item music${index} ${index == thisSong ? 'played' : false}">
         <div class="item__left">
             <div class="play__name">
                 <div class="item__plays">
@@ -49,8 +49,6 @@ songList.forEach((el, index) => {
         </div >
     </div > `;
 });
-
-
 
 function loadSong(song) {
     console.log(`audio/${song.name}.mp3`);
@@ -93,7 +91,7 @@ function pauseSong() {
 
 
 function showThisSong() {
-    document.querySelectorAll('.player__item').forEach((el, index) => {
+    document.querySelectorAll('.player__item').forEach((el) => {
         el.classList.remove('played');
     })
     document.querySelector(`.music${thisSong}`).classList.add('played');
@@ -104,6 +102,8 @@ function nextSong() {
 
     if (thisSong < songList.length - 1) {
         thisSong++;
+    } else {
+        thisSong = 0;
     }
     loadSong(songList[thisSong]);
     if (play.classList.contains('pause')) {
@@ -118,6 +118,8 @@ function nextSong() {
 function prevSong() {
     if (thisSong != 0) {
         thisSong--;
+    } else {
+        thisSong = songList.length - 1;
     }
     loadSong(songList[thisSong]);
     if (play.classList.contains('pause')) {
@@ -152,4 +154,27 @@ function updateProgress(e) {
     progress.style.width = percent + '%';
 }
 
-audio.addEventListener('timeupdate', updateProgress)
+audio.addEventListener('timeupdate', updateProgress);
+
+
+function setProgress(e) {
+    const width = this.clientWidth;
+    const clickX = e.offsetX;
+    const duration = audio.duration;
+
+    audio.currentTime = (clickX / width) * duration;
+}
+
+document.querySelector('.player__top').addEventListener('click', setProgress);
+
+
+audio.addEventListener('ended', nextSong)
+
+
+function itemClick(index) {
+    thisSong = index;
+
+    loadSong(songList[thisSong]);
+    playSong();
+    showThisSong();
+}

@@ -54,6 +54,7 @@ body {
 }
 
 .player__item {
+    cursor: pointer;
     color: white;
     padding: 10px;
     display: flex;
@@ -95,6 +96,12 @@ body {
     width: 300px;
 }
 
+.player__prew,
+.player__next,
+.player__play {
+    cursor: pointer;
+}
+
 .play__name {
     display: flex;
     justify-content: left;
@@ -108,33 +115,23 @@ body {
     justify-content: center;
 }
 
-.item__play {
-    cursor: pointer;
-}
-
 .player__top {
+    cursor: pointer;
     width: 100vw;
     height: 10px;
-    background-color: black;
+    background-color: gray;
     border-top: 2px solid black;
 }
 
 .player__progress {
     background-color: white;
     height: 100%;
+    width: 1%;
     border-radius: 10px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: right;
-}
-
-.progress__end {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: white;
-    border: 1px solid gray;
 }
 
 @keyframes animPlay {
