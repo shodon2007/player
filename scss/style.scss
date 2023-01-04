@@ -278,6 +278,46 @@ body {
     justify-content: right;
 }
 
+.player__modal {
+    z-index: 100;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal__body {
+    width: 300px;
+    text-align: center;
+}
+
+.modal__text {
+    font-size: 30px;
+    color: white;
+}
+
+.modal__buttons {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+
+.modal__button {
+    padding: 20px;
+    flex: 1 1 auto;
+    background-color: black;
+    color: white;
+    border: 3px solid white;
+    outline: none;
+    font-size: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
 @keyframes animPlay {
     0% {
         transform: rotate(0);
@@ -306,6 +346,18 @@ body {
 }
 
 @media (max-width: 320px) {
+    .modal__body {
+        width: 100%;
+    }
+
+    .modal__text {
+        font-size: 16px;
+    }
+
+    .modal__button {
+        padding: 5px;
+    }
+
     .player__buttons {
         gap: 10px;
     }
@@ -316,6 +368,10 @@ body {
 }
 
 @media (max-width: 210px) {
+    .modal__button {
+        font-size: 10px;
+    }
+
     .player__full {
         display: none;
     }

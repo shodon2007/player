@@ -6,6 +6,16 @@ const progress = document.querySelector('.player__progress');
 const domSongList = document.querySelector('.player__items')
 const volume = document.querySelector('.volume__input');
 
+document.querySelector('button').addEventListener('click', function (event) {
+
+    if (document.fullscreenElement) {
+        document.exitFullscreen();
+    } else {
+        document.documentElement.requestFullscreen();
+    }
+
+}, false);
+
 const songList = [
     'random test music',
     'Free Test File',
@@ -217,3 +227,7 @@ function fullClick() {
         document.querySelector('.player__items').style.display = 'none';
     }
 }
+
+document.querySelector('.modal__buttons').addEventListener('click', () => {
+    document.querySelector('.player__modal').style.display = 'none';
+})
