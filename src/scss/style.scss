@@ -23,6 +23,10 @@ body {
     overflow: hidden;
     height: 100vh;
     height: calc(var(--vh, 1vh) * 100);
+    background-image: url(../img/bg.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
 }
 
 .player__image img {
@@ -115,6 +119,7 @@ body {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    gap: 10px;
 }
 
 .player__right {
@@ -159,7 +164,7 @@ body {
     display: flex;
     justify-content: space-between;
     transition: all 0.5s ease;
-    background-color: #000000;
+    background-color: rgba(0, 0, 0, 0.4);
 
     &:hover {
         color: white;
