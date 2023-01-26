@@ -238,7 +238,17 @@ window.fullClick = () => {
     }
 }
 
-
+document.onkeydown = (e) => {
+    e.preventDefault();
+    if (e.keyCode == 32) {
+        if (!play.classList.contains('pause')) {
+            pauseSong();
+        } else {
+            playSong();
+        }
+    }
+    return false;
+}
 
 let vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${vh}px`);
